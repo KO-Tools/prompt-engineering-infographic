@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Prompt Engineering Guide: An Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF8F5; /* Kind Oasis: Light Background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            border: 2px solid #3A5F4B; /* Kind Oasis: Dark Green */
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: 80%;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            color: #2C4A3C; /* Kind Oasis: Darker Green */
+            line-height: 1;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 2rem;
+            margin: 0 auto;
+        }
+        .gemini-feature textarea, .gemini-feature input {
+            width: 100%;
+            border: 1px solid #A5D6A7; /* Kind Oasis: Light Green */
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            transition: border-color 0.2s;
+        }
+        .gemini-feature textarea:focus, .gemini-feature input:focus {
+            outline: none;
+            border-color: #3A5F4B; /* Kind Oasis: Dark Green */
+            box-shadow: 0 0 0 2px rgba(58, 95, 75, 0.5);
+        }
+        .gemini-button {
+            background-color: #3A5F4B; /* Kind Oasis: Dark Green */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .gemini-button:hover {
+            background-color: #2C4A3C; /* Kind Oasis: Darker Green */
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3A5F4B; /* Kind Oasis: Dark Green */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 sm:p-6 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#2C4A3C] mb-4">Mastering the Craft of Prompt Engineering</h1>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">Transform your interactions with AI from simple queries to sophisticated commands. This guide visualizes the key to unlocking an LLM's true potential.</p>
+        </header>
+
+        <main class="space-y-16">
+            
+            <section id="ingredients" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-xl p-6 order-2 md:order-1">
+                    <h2 class="text-3xl font-bold text-[#2C4A3C] mb-4">The Anatomy of a Perfect Prompt</h2>
+                    <p class="text-gray-700 mb-4">A great prompt isn't just a question; it's a carefully constructed set of instructions. The most effective prompts are a blend of five core ingredients that guide the AI to deliver precisely what you need.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="flex items-start"><span class="text-xl mr-3 text-[#3A5F4B]">🎯</span><div><strong class="font-semibold">Task:</strong> Explicitly state the action to be performed.</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3 text-[#3A5F4B]">📝</span><div><strong class="font-semibold">Context:</strong> Provide the 'why' and background for your request.</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3 text-[#3A5F4B]">👤</span><div><strong class="font-semibold">Persona:</strong> Assign a role to the AI for a specific tone and style.</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3 text-[#3A5F4B]">📋</span><div><strong class="font-semibold">Format:</strong> Define the desired output structure (e.g., list, table, JSON).</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3 text-[#3A5F4B]">✨</span><div><strong class="font-semibold">Example:</strong> Show, don't just tell, with a clear example.</div></li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 order-1 md:order-2">
+                    <div class="chart-container">
+                        <canvas id="ingredientsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="workflow" class="text-center bg-white rounded-lg shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-[#2C4A3C] mb-2">The Prompt Engineering Workflow</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-8">Effective prompting is rarely a one-shot process. It's an iterative cycle of creation, analysis, and refinement that sharpens your output with each loop.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center md:space-x-4">
+                    <div class="flowchart-step"><strong>1. Prompt</strong><p class="text-sm text-gray-600">Craft your initial instruction.</p></div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-step"><strong>2. Analyze</strong><p class="text-sm text-gray-600">Evaluate the AI's output.</p></div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-step"><strong>3. Refine</strong><p class="text-sm text-gray-600">Add detail, context, or examples.</p></div>
+                    <div class="flowchart-arrow">🔄</div>
+                    <div class="flowchart-step bg-[#A5D6A7] text-[#2C4A3C]"><strong>4. Repeat</strong><p class="text-sm">Loop until desired output is achieved.</p></div>
+                </div>
+            </section>
+
+            <section id="enhancer" class="gemini-feature bg-white rounded-lg shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-center text-[#2C4A3C] mb-2">✨ AI-Powered Prompt Enhancer</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-6 text-center">Enter a basic prompt below, and let Gemini upgrade it into a more robust and effective version using the core principles of prompt engineering.</p>
+                <div class="max-w-xl mx-auto">
+                    <textarea id="enhancer-input" rows="4" placeholder="e.g., Write a blog post about coffee."></textarea>
+                    <div class="text-center mt-4">
+                        <button id="enhance-button" class="gemini-button">Enhance My Prompt</button>
+                    </div>
+                    <div id="enhancer-output" class="mt-6"></div>
+                </div>
+            </section>
+
+            <section id="generator" class="gemini-feature bg-white rounded-lg shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-center text-[#2C4A3C] mb-2">✨ Prompt Idea Generator</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-6 text-center">Stuck for ideas? Enter a topic, and Gemini will generate three creative and fully-formed prompts to get you started.</p>
+                <div class="max-w-xl mx-auto">
+                    <input type="text" id="generator-input" placeholder="e.g., Education, Marketing, Fitness">
+                     <div class="text-center mt-4">
+                        <button id="generate-button" class="gemini-button">Generate Ideas</button>
+                    </div>
+                    <div id="generator-output" class="mt-6"></div>
+                </div>
+            </section>
+
+            <section id="protips" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <div class="chart-container h-[400px] max-h-[450px]">
+                        <canvas id="proTipsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h2 class="text-3xl font-bold text-[#2C4A3C] mb-4">From Good to Great: Pro-Tips</h2>
+                    <p class="text-gray-700 mb-4">Small changes in phrasing can lead to dramatically better results. These pro-tips focus on clarity and positive framing to guide the model effectively.</p>
+                     <div class="mt-4 p-4 border-l-4 border-[#3A5F4B] bg-green-50">
+                        <strong class="font-semibold block text-[#2C4A3C]">Be Positive & Clear:</strong> Frame instructions affirmatively. Instead of "Don't use jargon," try "Explain this in simple terms for a beginner." This gives the AI a clear target.
+                    </div>
+                    <div class="mt-4 p-4 border-l-4 border-[#3A5F4B] bg-green-50">
+                        <strong class="font-semibold block text-[#2C4A3C]">Refine Iteratively:</strong> Treat prompting as a conversation. Use the first response as a starting point to add more detail and guide the AI closer to your goal.
+                    </div>
+                </div>
+            </section>
+
+            <section id="hierarchy" class="text-center bg-white rounded-lg shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-[#2C4A3C] mb-2">The Hierarchy of Prompting Skills</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-8">Mastering prompt engineering is a journey. Start with the foundational ingredients and build your way up to advanced, strategic techniques.</p>
+                <div class="space-y-2 max-w-md mx-auto">
+                    <div class="pyramid-level bg-[#2C4A3C]" style="width: 100%;">Advanced Strategies</div>
+                    <div class="pyramid-level bg-[#3A5F4B]" style="width: 85%;">Pro-Tips & Refinement</div>
+                    <div class="pyramid-level bg-[#668767]" style="width: 70%;">The 5 Core Ingredients</div>
+                </div>
+            </section>
+            
+            <section id="habits" class="bg-white rounded-lg shadow-xl p-8">
+                 <h2 class="text-3xl font-bold text-center text-[#2C4A3C] mb-8">Habits of an Effective Prompt Engineer</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="text-center p-4">
+                        <span class="text-5xl">🧠</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Consistent Practice</h3>
+                        <p class="text-gray-600 text-sm">Regular experimentation builds intuition and skill.</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <span class="text-5xl">📚</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Build a Prompt Library</h3>
+                        <p class="text-gray-600 text-sm">Save and organize effective prompts for future use.</p>
+                    </div>
+                     <div class="text-center p-4">
+                        <span class="text-5xl">✅</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Use a Pre-flight Checklist</h3>
+                        <p class="text-gray-600 text-sm">Mentally check for the 5 core ingredients before sending.</p>
+                    </div>
+                     <div class="text-center p-4">
+                        <span class="text-5xl">🔬</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Continuous Experimentation</h3>
+                        <p class="text-gray-600 text-sm">Test new models, techniques, and phrasing.</p>
+                    </div>
+                     <div class="text-center p-4">
+                        <span class="text-5xl">📈</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Stay Up-to-Date</h3>
+                        <p class="text-gray-600 text-sm">Follow AI research and community discoveries.</p>
+                    </div>
+                     <div class="text-center p-4">
+                        <span class="text-5xl">🎯</span>
+                        <h3 class="font-bold text-lg mt-2 mb-1">Be an AI Director</h3>
+                        <p class="text-gray-600 text-sm">Move from passive user to active director of technology.</p>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">The journey to mastering AI interaction starts with your next prompt.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapText(str) {
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [str];
+        }
+
+        const sharedTooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const ingredientsCtx = document.getElementById('ingredientsChart').getContext('2d');
+        const ingredientsChart = new Chart(ingredientsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Task', 'Context', 'Persona', 'Format', 'Example'],
+                datasets: [{
+                    label: 'Core Ingredients',
+                    data: [20, 20, 20, 20, 20],
+                    backgroundColor: ['#2C4A3C', '#3A5F4B', '#668767', '#A5D6A7', '#D2E8D3'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...sharedTooltipConfig.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                },
+                cutout: '50%'
+            }
+        });
+
+        const proTipsCtx = document.getElementById('proTipsChart').getContext('2d');
+        const proTipsChart = new Chart(proTipsCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Use Positive and Clear Instructions', 
+                    'Refine Iteratively', 
+                    'Control Token Length for Scale', 
+                    'Use Variables for Automation'
+                ].map(label => wrapText(label)),
+                datasets: [{
+                    label: 'Impact on Output Quality',
+                    data: [95, 90, 75, 85],
+                    backgroundColor: ['#3A5F4B', '#668767', '#A5D6A7', '#2C4A3C'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                     ...sharedTooltipConfig.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Gemini API Features
+        const enhanceButton = document.getElementById('enhance-button');
+        const enhancerInput = document.getElementById('enhancer-input');
+        const enhancerOutput = document.getElementById('enhancer-output');
+
+        const generateButton = document.getElementById('generate-button');
+        const generatorInput = document.getElementById('generator-input');
+        const generatorOutput = document.getElementById('generator-output');
+
+        // IMPORTANT: Add your Gemini API key here or use environment variables
+        const apiKey = ""; // ADD YOUR API KEY HERE
+
+        function showLoader(element) {
+            element.innerHTML = '<div class="loader"></div>';
+        }
+
+        function copyToClipboard(text, button) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            const originalText = button.innerText;
+            button.innerText = 'Copied!';
+            setTimeout(() => {
+                button.innerText = originalText;
+            }, 2000);
+        }
+
+        async function callGemini(prompt, isJson = false) {
+            if (!apiKey) {
+                throw new Error("Please add your Gemini API key to use this feature.");
+            }
+            
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            let payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }]
+            };
+
+            if (isJson) {
+                payload.generationConfig = {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "title": { "type": "STRING" },
+                                "prompt": { "type": "STRING" }
+                            },
+                            required: ["title", "prompt"]
+                        }
+                    }
+                };
+            }
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                    console.error("Unexpected API response structure:", result);
+                    if(result.promptFeedback && result.promptFeedback.blockReason){
+                         throw new Error(`Request blocked: ${result.promptFeedback.blockReason}`);
+                    }
+                    throw new Error("Could not extract text from API response.");
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                throw error;
+            }
+        }
+
+        enhanceButton.addEventListener('click', async () => {
+            const userInput = enhancerInput.value;
+            if (!userInput.trim()) {
+                enhancerOutput.innerHTML = '<p class="text-red-500 text-center">Please enter a prompt to enhance.</p>';
+                return;
+            }
+
+            showLoader(enhancerOutput);
+
+            const metaPrompt = `As a prompt engineering expert, analyze the following user's prompt. Your task is to enhance it by applying the core principles: add a clear Task, provide rich Context, suggest a suitable Persona, define a specific Format, and include an illustrative Example. Return only the improved prompt, ready for the user to copy and use. User's prompt: "${userInput}"`;
+
+            try {
+                const enhancedPrompt = await callGemini(metaPrompt);
+                enhancerOutput.innerHTML = `
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h4 class="font-bold text-lg text-[#2C4A3C] mb-2">Enhanced Prompt:</h4>
+                        <p class="text-gray-800 whitespace-pre-wrap">${enhancedPrompt}</p>
+                        <div class="text-right mt-4">
+                            <button class="text-sm bg-white border border-[#3A5F4B] text-[#2C4A3C] px-3 py-1 rounded hover:bg-gray-50" onclick="copyToClipboard(this.previousElementSibling.innerText, this)">Copy</button>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                enhancerOutput.innerHTML = `<p class="text-red-500 text-center">Error: ${error.message}</p>`;
+            }
+        });
+
+        generateButton.addEventListener('click', async () => {
+            const topic = generatorInput.value;
+            if (!topic.trim()) {
+                generatorOutput.innerHTML = '<p class="text-red-500 text-center">Please enter a topic to generate ideas.</p>';
+                return;
+            }
+
+            showLoader(generatorOutput);
+
+            const ideaPrompt = `You are a creative assistant specializing in prompt engineering. Based on the topic "${topic}", generate three distinct and creative prompt ideas. Each idea should be a complete prompt that includes a Task, Context, Persona, and Format.`;
+
+            try {
+                const ideasJson = await callGemini(ideaPrompt, true);
+                const ideas = JSON.parse(ideasJson);
+                
+                let outputHtml = '<div class="space-y-4">';
+                ideas.forEach(idea => {
+                    outputHtml += `
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h4 class="font-bold text-lg text-[#2C4A3C] mb-2">${idea.title}</h4>
+                            <p class="text-gray-800 whitespace-pre-wrap">${idea.prompt}</p>
+                            <div class="text-right mt-4">
+                                <button class="text-sm bg-white border border-[#3A5F4B] text-[#2C4A3C] px-3 py-1 rounded hover:bg-gray-50" onclick="copyToClipboard(this.previousElementSibling.innerText, this)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                outputHtml += '</div>';
+                generatorOutput.innerHTML = outputHtml;
+
+            } catch (error) {
+                generatorOutput.innerHTML = `<p class="text-red-500 text-center">Error: ${error.message}</p>`;
+            }
+        });
+
+    </script>
+</body>
+</html>
